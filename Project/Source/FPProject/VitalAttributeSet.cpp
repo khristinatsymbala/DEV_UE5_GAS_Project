@@ -2,7 +2,7 @@
 
 
 #include "VitalAttributeSet.h"
-
+//обмежувач нових значень атрибута
 void UVitalAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
 {
 	Super::PreAttributeChange(Attribute, NewValue);
@@ -23,7 +23,21 @@ void UVitalAttributeSet::PostAttributeChange(const FGameplayAttribute& Attribute
 		{
 			//можемо відправити меседж що ми померли
 			//накладати теги
-			//GetOwningAbilitySystemComponent()->AddLooseGameplayTag("");
+			GetOwningAbilitySystemComponent()->AddLooseGameplayTag(FGameplayTag::RequestGameplayTag(FName("Status.Dead")));
+		}
+	}
+
+	if(Attribute == GetHungerAttribute())
+	{
+		if(NewValue <= 0.f)
+		{
+			// як тут правильно викликати тут додавання тегу на цьому моменті?
+			// чи тут взагалі інша логіка?
+			//GetOwningAbilitySystemComponent()->AddLooseGameplayTag(FGameplayTag::RequestGameplayTag(FName("Status.Hunger.Deadly")));
+			//GetOwningAbilitySystemComponent()->AddGameplayTag(FGameplayTag::RequestGameplayTag(FName("Status.Hunger.Deadly")));
+		}else if(NewValue < 25.f)
+		{
+			//GetOwningAbilitySystemComponent()->AddGameplayTag(FGameplayTag::RequestGameplayTag(FName("Status.Hunger.Low")));
 		}
 	}
 }

@@ -11,6 +11,10 @@ void UVitalAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute,
 	{
 		NewValue = FMath::Clamp(NewValue,0.f,MaxHealth.GetCurrentValue());
 	}
+	if(Attribute == GetStaminaAttribute())
+	{
+		NewValue = FMath::Clamp(NewValue,0.f,MaxStamina.GetCurrentValue());
+	}
 }
 //місце для відправки меседжів
 void UVitalAttributeSet::PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue)
@@ -40,4 +44,5 @@ void UVitalAttributeSet::PostAttributeChange(const FGameplayAttribute& Attribute
 			//GetOwningAbilitySystemComponent()->AddGameplayTag(FGameplayTag::RequestGameplayTag(FName("Status.Hunger.Low")));
 		}
 	}
+
 }

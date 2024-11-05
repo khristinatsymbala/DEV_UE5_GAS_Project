@@ -21,8 +21,7 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	FGameplayAttributeData MaxHealth;
 	ATTRIBUTE_ACCESSORS(UVitalAttributeSet, MaxHealth)
-
-
+	
 	UPROPERTY(BlueprintReadOnly)
 	FGameplayAttributeData Hunger;
 	ATTRIBUTE_ACCESSORS(UVitalAttributeSet, Hunger)
